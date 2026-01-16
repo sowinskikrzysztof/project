@@ -96,9 +96,18 @@ public class App {
                         Order o = askOrder(orderService, sc);
                         if (o == null) break;
 
+                        System.out.print("Czy na pewno anulowac zamowienie? (t/n): ");
+                        String confirm = sc.next();
+
+                        if (!confirm.equalsIgnoreCase("t")) {
+                        System.out.println("Anulowanie przerwane.");
+                        break;
+                        }
+
                         boolean ok = orderService.cancelOrder(o.getId());
                         System.out.println(ok ? "Zamowienie anulowane." : "Nie mozna anulowac.");
                     }
+
 
                     case 6 -> {
                         List<Order> all = orderService.getAllOrders();
