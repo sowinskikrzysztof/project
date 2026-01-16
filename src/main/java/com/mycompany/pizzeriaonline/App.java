@@ -27,13 +27,14 @@ public class App {
 
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
-                System.out.println("\n=== Pizzeria Online ===");
+                System.out.println("\n=== Pizzeria Online (ETAP 2) ===");
                 System.out.println("1) Pokaz menu");
                 System.out.println("2) Zloz zamowienie");
                 System.out.println("3) Pokaz zamowienie po ID");
                 System.out.println("4) Zmien status zamowienia");
                 System.out.println("5) Anuluj zamowienie");
                 System.out.println("6) Lista wszystkich zamowien");
+                System.out.println("7) Dodaj adres dostawy (oplata 8 PLN)");
                 System.out.println("0) Wyjscie");
                 System.out.print("Wybor: ");
 
@@ -106,6 +107,22 @@ public class App {
                         } else {
                             System.out.println("\nZAMOWIENIA:");
                             for (Order o : all) System.out.println(o);
+                        }
+                    }
+
+                    case 7 -> {
+                        Order o = askOrder(orderService, sc);
+                        if (o == null) break;
+
+                        sc.nextLine();
+                        System.out.print("Podaj adres dostawy: ");
+                        String address = sc.nextLine();
+
+                        boolean ok = orderService.setDeliveryAddress(o.getId(), address);
+                        if (ok) {
+                            System.out.println("Adres zapisany. Oplata za dostawe: " + orderService.getDeliveryFee() + " PLN");
+                        } else {
+                            System.out.println("Niepoprawny adres (min 5 znakow).");
                         }
                     }
 

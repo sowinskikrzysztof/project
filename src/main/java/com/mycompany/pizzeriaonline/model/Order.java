@@ -18,6 +18,8 @@ public class Order {
     private final List<Pizza> pizzas = new ArrayList<>();
     private OrderStatus status = OrderStatus.CREATED;
 
+    private String deliveryAddress;
+
     public Order(String customerName) {
         this.id = IdGenerator.nextId();
         this.customerName = customerName;
@@ -41,12 +43,21 @@ public class Order {
         return true;
     }
 
+    public void setDeliveryAddress(String address) {
+        this.deliveryAddress = address;
+    }
+
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
     @Override
     public String toString() {
         return "Order{id=" + id +
                 ", customer='" + customerName + '\'' +
                 ", pizzas=" + pizzas.size() +
                 ", status=" + status +
+                (deliveryAddress != null ? ", address='" + deliveryAddress + '\'' : "") +
                 '}';
     }
 }

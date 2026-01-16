@@ -12,12 +12,17 @@ package com.mycompany.pizzeriaonline.service;
 import com.mycompany.pizzeriaonline.model.Order;
 import com.mycompany.pizzeriaonline.model.OrderStatus;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class OrderService {
 
     private final Menu menu;
     private final Map<Integer, Order> orders = new HashMap<>();
+
+    private static final double DELIVERY_FEE = 8.0;
 
     public OrderService(Menu menu) {
         this.menu = menu;
@@ -62,5 +67,21 @@ public class OrderService {
 
         if (status == null) return false;
         return o.setStatus(status);
+    }
+
+    public boolean setDeliveryAddress(int orderId, String address) {
+        Order o = orders.get(orderId);
+        if (o == null) return false;
+
+        if (address == null) return false;
+        String a = address.trim();
+        if (a.length() < 5) return false;
+
+        o.setDeliveryAddress(a);
+        return true;
+    }
+
+    public double getDeliveryFee() {
+        return DELIVERY_FEE;
     }
 }
