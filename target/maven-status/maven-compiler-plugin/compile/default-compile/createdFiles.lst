@@ -1,9 +1,0 @@
-com\mycompany\pizzeriaonline\service\OrderService.class
-com\mycompany\pizzeriaonline\service\Menu.class
-com\mycompany\pizzeriaonline\App.class
-com\mycompany\pizzeriaonline\model\Order.class
-com\mycompany\pizzeriaonline\model\IdGenerator.class
-com\mycompany\pizzeriaonline\model\Customer.class
-com\mycompany\pizzeriaonline\model\OrderStatus.class
-com\mycompany\pizzeriaonline\model\User.class
-com\mycompany\pizzeriaonline\model\Pizza.class
